@@ -1,5 +1,12 @@
 package vehicle;
-
+/**
+ *The Vehicle program implements an application that displays the fastest vehicle
+ *  It's shows producer and max speed in the standard output.
+ *  For logging was used log4j framework.
+ * @author Łukasz Flis
+ * @version 1.1
+ * @since 15-11-2020
+ */
 
 import org.apache.log4j.*;
 import org.jetbrains.annotations.NotNull;
@@ -9,8 +16,14 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
+/**
+ * This is the main method which makes use of getFastestVehicle method.
+ * @param args Unused.
+ * @return Nothing.
+ */
 public class Main {
     private final static Logger log = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
         log.info("Entering application.");
         // 2d Array, each row define vehicle type producer and its max speed
@@ -33,7 +46,7 @@ public class Main {
         while (true) {
             log.info("Wybierz: CAR SHIP PLANE  BIKE  ALL  EXIT");
             String userInput = sc.next().toUpperCase();
-            //Show fastest vehicle based of userInput(type)
+            //Display fastest vehicle based on userInput(type)
             switch (userInput) {
                 case "CAR":
                 case "SHIP":
@@ -60,10 +73,18 @@ public class Main {
             }
         }
     }
+
     //zwraca obiekt typu Vehicle dla podanej listy obiektów Vehicle i zadanego typu Vehicle
+
+    /**
+     * Find the fastest vehicle. Use stream with predicate and comparator.
+     * @param list Arraylist of Vehicles objects
+     * @param vehicleType  type of vehicle
+     * @return vehicle type object
+     */
     public static @NotNull Vehicle getFastestVehicle(ArrayList<Vehicle> list, String vehicleType) {
         Predicate<Vehicle> predicate = vehicle -> vehicle.getVehicleType().equalsIgnoreCase(vehicleType);
-        // obiekt klasy Vehicle o wyższej wartości właściwości topSpeed przed obiektem o niższej wartości
+        // Compare two int object
         Comparator<Vehicle> comparator = Comparator.comparingInt(Vehicle::getTopSpeed);
         return list.stream().filter(predicate).max(comparator).get();
     }
