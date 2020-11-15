@@ -3,7 +3,7 @@ package vehicle;
  *The Vehicle program implements an application that displays the fastest vehicle
  *  It's shows producer and max speed in the standard output.
  *  For logging was used log4j framework.
- * @author Łukasz Flis
+ * @author Lukasz Flis
  * @version 1.1
  * @since 15-11-2020
  */
@@ -18,8 +18,6 @@ import java.util.function.Predicate;
 
 /**
  * This is the main method which makes use of getFastestVehicle method.
- * @param args Unused.
- * @return Nothing.
  */
 public class Main {
     private final static Logger log = LogManager.getLogger(Main.class);
